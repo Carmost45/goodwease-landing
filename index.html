@@ -15,6 +15,8 @@
 
 const CONFIG = {
 
+  app_url: "https://goodwease-dev.vercel.app",
+
   /* --- NAVIGATION --- */
   nav: {
     logo_good: "good",
@@ -23,6 +25,18 @@ const CONFIG = {
     cta_login: "Connexion",
     cta_login_url: "https://goodwease-dev.vercel.app/login",
     cta_demo: "Demander une démo",
+  },
+
+  login_modal: {
+    title: "Connexion",
+    subtitle: "Entrez votre email pour recevoir un lien de connexion.",
+    placeholder: "votre@email.com",
+    cta: "Recevoir un lien de connexion",
+    success_title: "Lien envoyé ✓",
+    success_text: "Vérifiez votre boîte mail. Le lien est valable 15 minutes.",
+    error_text: "Une erreur est survenue. Veuillez réessayer.",
+    footer: "Pas encore client ? ",
+    footer_link: "Demander une démo",
   },
 
   /* --- HERO (section principale) --- */
@@ -485,6 +499,64 @@ const CONFIG = {
     .nav-links { display: none; }
     .footer-top { grid-template-columns: 1fr; }
   }
+
+  /* ===== MODAL CONNEXION ===== */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 1000;
+    background: rgba(15,28,46,0.6); backdrop-filter: blur(4px);
+    align-items: center; justify-content: center; padding: 1.5rem;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: var(--white); border-radius: var(--radius-xl);
+    padding: 2.5rem; width: 100%; max-width: 440px;
+    box-shadow: 0 24px 64px rgba(15,28,46,0.25);
+    position: relative; animation: modal-in 0.2s ease;
+  }
+  @keyframes modal-in {
+    from { opacity: 0; transform: translateY(12px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .modal-close {
+    position: absolute; top: 1rem; right: 1rem;
+    background: none; border: none; cursor: pointer;
+    color: var(--text-3); font-size: 1.2rem; line-height: 1;
+    padding: 0.35rem; border-radius: var(--radius);
+    transition: background 0.15s, color 0.15s;
+  }
+  .modal-close:hover { background: var(--surface); color: var(--navy); }
+  .modal-logo { display: flex; align-items: center; gap: 0; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1.2rem; margin-bottom: 1.5rem; }
+  .modal-logo .logo-good { color: var(--navy); }
+  .modal-logo .logo-wease { color: var(--sky); }
+  .modal-title { font-family: 'Sora', sans-serif; font-size: 1.25rem; font-weight: 700; color: var(--navy); margin-bottom: 0.4rem; }
+  .modal-subtitle { color: var(--text-2); font-size: 0.9rem; margin-bottom: 1.5rem; }
+  .modal-input {
+    width: 100%; padding: 0.7rem 1rem; border-radius: var(--radius);
+    border: 1.5px solid var(--border); font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem; color: var(--text-1); background: var(--surface);
+    outline: none; transition: border-color 0.15s, box-shadow 0.15s;
+    margin-bottom: 0.75rem;
+  }
+  .modal-input:focus { border-color: var(--sky); box-shadow: 0 0 0 3px rgba(74,144,217,0.12); background: var(--white); }
+  .modal-submit {
+    width: 100%; padding: 0.7rem 1.25rem; border-radius: var(--radius);
+    font-size: 0.95rem; font-weight: 600; font-family: 'DM Sans', sans-serif;
+    background: var(--sky); color: #fff; border: none; cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+  }
+  .modal-submit:hover { background: #3a7bbf; }
+  .modal-submit:active { transform: scale(0.97); }
+  .modal-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+  .modal-feedback {
+    display: none; border-radius: var(--radius); padding: 0.9rem 1rem;
+    font-size: 0.875rem; margin-top: 0.75rem; line-height: 1.5;
+  }
+  .modal-feedback.success { background: var(--green-bg); color: #2d5b0a; display: block; }
+  .modal-feedback.error   { background: #fef2f2; color: var(--red); display: block; }
+  .modal-feedback-title { font-weight: 700; margin-bottom: 0.2rem; }
+  .modal-footer { margin-top: 1.25rem; text-align: center; font-size: 0.82rem; color: var(--text-3); }
+  .modal-footer a { color: var(--sky); font-weight: 500; cursor: pointer; }
+  .modal-footer a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -500,7 +572,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="logo"><span class="logo-good">${C.nav.logo_good}</span><span class="logo-wease">${C.nav.logo_wease}</span></div>
       <nav class="nav-links">${C.nav.links.map(l=>`<a class="nav-link">${l}</a>`).join('')}</nav>
       <div class="nav-actions">
-        <a href="${C.nav.cta_login_url}" class="btn-ghost">${C.nav.cta_login}</a>
+        <button class="btn-ghost" id="btn-login" onclick="openLoginModal()">${C.nav.cta_login}</button>
         <button class="btn-primary">${C.nav.cta_demo}</button>
       </div>
     </div>`;
@@ -700,5 +772,106 @@ document.addEventListener('DOMContentLoaded', () => {
 <section class="cta-section" id="cta-section"></section>
 <footer id="footer"></footer>
 
+
+<!-- ===== MODAL CONNEXION ===== -->
+<div class="modal-overlay" id="login-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-box">
+    <button class="modal-close" id="modal-close-btn" aria-label="Fermer">✕</button>
+    <div class="modal-logo"><span class="logo-good"></span><span class="logo-wease"></span></div>
+    <div class="modal-title" id="modal-title"></div>
+    <div class="modal-subtitle" id="modal-subtitle"></div>
+    <input class="modal-input" type="email" id="modal-email" autocomplete="email" />
+    <button class="modal-submit" id="modal-submit"></button>
+    <div class="modal-feedback" id="modal-feedback">
+      <div class="modal-feedback-title" id="modal-feedback-title"></div>
+      <div id="modal-feedback-text"></div>
+    </div>
+    <div class="modal-footer" id="modal-footer"></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  const C = CONFIG;
+  const M = C.login_modal;
+
+  /* Remplir les textes statiques */
+  document.querySelector('#login-modal .logo-good').textContent = C.nav.logo_good;
+  document.querySelector('#login-modal .logo-wease').textContent = C.nav.logo_wease;
+  document.getElementById('modal-title').textContent = M.title;
+  document.getElementById('modal-subtitle').textContent = M.subtitle;
+  document.getElementById('modal-email').placeholder = M.placeholder;
+  document.getElementById('modal-submit').textContent = M.cta;
+  document.getElementById('modal-footer').innerHTML =
+    M.footer + `<a onclick="closeLoginModal()">${M.footer_link}</a>`;
+
+  const overlay  = document.getElementById('login-modal');
+  const emailEl  = document.getElementById('modal-email');
+  const submitEl = document.getElementById('modal-submit');
+  const feedback = document.getElementById('modal-feedback');
+
+  function resetModal() {
+    emailEl.value = '';
+    submitEl.disabled = false;
+    submitEl.textContent = M.cta;
+    feedback.className = 'modal-feedback';
+    document.getElementById('modal-feedback-title').textContent = '';
+    document.getElementById('modal-feedback-text').textContent = '';
+  }
+
+  window.openLoginModal = function () {
+    resetModal();
+    overlay.classList.add('open');
+    setTimeout(() => emailEl.focus(), 50);
+  };
+
+  window.closeLoginModal = function () {
+    overlay.classList.remove('open');
+  };
+
+  document.getElementById('modal-close-btn').addEventListener('click', closeLoginModal);
+
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) closeLoginModal();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) closeLoginModal();
+  });
+
+  submitEl.addEventListener('click', async function () {
+    const email = emailEl.value.trim();
+    if (!email) { emailEl.focus(); return; }
+
+    submitEl.disabled = true;
+    submitEl.textContent = '…';
+
+    try {
+      const res = await fetch(`${C.app_url}/api/auth/magic-link`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      if (!res.ok) throw new Error('response_not_ok');
+
+      feedback.className = 'modal-feedback success';
+      document.getElementById('modal-feedback-title').textContent = M.success_title;
+      document.getElementById('modal-feedback-text').textContent = M.success_text;
+      submitEl.textContent = M.cta;
+    } catch {
+      feedback.className = 'modal-feedback error';
+      document.getElementById('modal-feedback-title').textContent = '';
+      document.getElementById('modal-feedback-text').textContent = M.error_text;
+      submitEl.disabled = false;
+      submitEl.textContent = M.cta;
+    }
+  });
+
+  emailEl.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') submitEl.click();
+  });
+})();
+</script>
 </body>
 </html>
