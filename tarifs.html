@@ -55,7 +55,12 @@ const CONFIG = {
       { title: "Fonctionnalités", href: "fonctionnalites.html", links: ["Évaluation 360° symétrique","Anonymat technique garanti","Restitution partagée","Plans d'amélioration co-construits","Hébergement France & RGPD"] },
       { title: "Pour qui ?", href: "pourqui.html", links: ["Direction Qualité","Direction des Achats","Direction des Systèmes d'Information","Direction Générale","Direction Commerciale & Partenariats"] },
       { title: "Ressources", href: "ressources.html", links: ["Méthode & évaluation 360°","Technique & sécurité","RGPD & hébergement","Tarifs & contrats","Déploiement"] },
-      { title: "Goodwease", href: "index.html", links: ["À propos","Contact","Mentions légales","Politique de confidentialité"] },
+      { title: "Goodwease", href: "index.html", links: [
+      { label: "À propos",                     href: "apropos.html" },
+      { label: "Contact",                      href: "contact.html" },
+      { label: "Mentions légales",             href: "mentions-legales.html" },
+      { label: "Politique de confidentialité", href: "confidentialite.html" },
+    ]},
     ],
     legal: "© 2026 Goodwease — Tous droits réservés — Hébergé en France 🇫🇷",
   },
@@ -180,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="mentions-grid">${C.mentions.map(m => `<div class="mention-card"><div class="mention-icon">${m.icon}</div><div><div class="mention-title">${m.title}</div><div class="mention-text">${m.text}</div></div></div>`).join('')}</div>`;
   document.getElementById('cta').innerHTML = `<div class="cta-headline">Une question sur les tarifs ?</div><div class="cta-sub">On vous répond en moins de 24h.</div><div class="cta-actions"><a href="rdv.html" class="hero-btn-primary" style="text-decoration:none">Prendre rendez-vous</a></div>`;
   const fo = C.footer;
-  document.getElementById('footer').innerHTML = `<div class="footer-inner"><div class="footer-top"><div class="footer-brand"><div class="logo"><span class="logo-good">${C.nav.logo_good}</span><span class="logo-wease">${C.nav.logo_wease}</span></div><div class="footer-tagline">${fo.tagline}</div></div>${fo.cols.map(c => `<div><a class="footer-col-title" href="${c.href}">${c.title}</a><div class="footer-links">${c.links.map(l => `<span class="footer-link">${l}</span>`).join('')}</div></div>`).join('')}</div><div class="footer-bottom">${fo.legal}</div></div>`;
+  document.getElementById('footer').innerHTML = `<div class="footer-inner"><div class="footer-top"><div class="footer-brand"><div class="logo"><span class="logo-good">${C.nav.logo_good}</span><span class="logo-wease">${C.nav.logo_wease}</span></div><div class="footer-tagline">${fo.tagline}</div></div>${fo.cols.map(c => `<div><a class="footer-col-title" href="${c.href}">${c.title}</a><div class="footer-links">${c.links.map(l => typeof l === 'string' ? `<span class="footer-link">${l}</span>` : `<a class="footer-link" href="${l.href}">${l.label}</a>`).join('')}</div></div>`).join('')}</div><div class="footer-bottom">${fo.legal}</div></div>`;
 });
 </script>
 </body>

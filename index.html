@@ -193,11 +193,19 @@ const CONFIG = {
       },
       {
         title: "Ressources",
-        links: ["Prendre rendez-vous", "Guide RGPD & sécurité", "Documentation API", "Centre d'aide"],
+        links: [
+          { label: "Prendre rendez-vous",   href: "rdv.html" },
+          "Guide RGPD & sécurité", "Documentation API", "Centre d'aide",
+        ],
       },
       {
         title: "Goodwease",
-        links: ["À propos", "Contact", "Mentions légales", "Politique de confidentialité"],
+        links: [
+          { label: "À propos",                     href: "apropos.html" },
+          { label: "Contact",                      href: "contact.html" },
+          { label: "Mentions légales",             href: "mentions-legales.html" },
+          { label: "Politique de confidentialité", href: "confidentialite.html" },
+        ],
       },
     ],
     legal: "© 2026 Goodwease — Tous droits réservés — Hébergé en France 🇫🇷",
@@ -628,7 +636,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <nav class="nav-links">${C.nav.links.map(l=>`<a class="nav-link" href="${l.href}">${l.label}</a>`).join('')}</nav>
       <div class="nav-actions">
         
-        <button class="btn-primary">${C.nav.cta_demo}</button>
+        <a href="rdv.html" class="btn-primary" style="text-decoration:none;display:inline-flex;align-items:center">${C.nav.cta_demo}</a>
       </div>
     </div>`;
 
@@ -654,7 +662,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <h1>${h.headline_line1} <em>${h.headline_line2}</em><br>${h.headline_line3}</h1>
         <p class="hero-sub">${h.subtext}</p>
         <div class="hero-actions">
-          <button class="hero-btn-primary">${h.cta_primary}</button>
+          <a href="rdv.html" class="hero-btn-primary" style="text-decoration:none">${h.cta_primary}</a>
           <button class="hero-btn-secondary">${h.cta_secondary}</button>
         </div>
         <div class="hero-badge">${h.badge}</div>
@@ -799,7 +807,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <h2 class="section-headline" style="max-width:100%;margin:0 auto 1rem;color:#fff">${cs.headline}</h2>
       <p class="section-sub" style="margin:0 auto 2.5rem;color:rgba(255,255,255,.6)">${cs.subtext}</p>
       <div class="cta-actions">
-        <button class="hero-btn-primary">${cs.cta_primary}</button>
+        <a href="rdv.html" class="hero-btn-primary" style="text-decoration:none">${cs.cta_primary}</a>
         <button class="hero-btn-secondary">${cs.cta_secondary}</button>
       </div>
       <div class="cta-mention">${cs.mention}</div>
@@ -810,7 +818,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const cols = fo.cols.map(c=>`
     <div>
       <div class="footer-col-title">${c.title}</div>
-      <div class="footer-links">${c.links.map(l=>`<a class="footer-link">${l}</a>`).join('')}</div>
+      <div class="footer-links">${c.links.map(l => typeof l === 'string' ? `<span class="footer-link">${l}</span>` : `<a class="footer-link" href="${l.href}">${l.label}</a>`).join('')}</div>
     </div>`).join('');
   document.getElementById('footer').innerHTML = `
     <div class="footer-inner">
@@ -838,7 +846,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('modal-subtitle').textContent = M.subtitle;
   modalEmail.placeholder = M.placeholder;
   modalSubmit.textContent = M.cta;
-  document.getElementById('modal-footer').innerHTML = `${M.footer}<a id="modal-demo-link">${M.footer_link}</a>`;
+  document.getElementById('modal-footer').innerHTML = `${M.footer}<a id="modal-demo-link" href="rdv.html">${M.footer_link}</a>`;
 
   // Open modal
   function openLoginModal() {
