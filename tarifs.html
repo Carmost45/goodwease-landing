@@ -16,7 +16,7 @@ const CONFIG = {
       { label: "Tarifs", href: "tarifs.html" },
       { label: "Ressources", href: "ressources.html" },
     ],
-    cta_demo: "Prendre rendez-vous",
+    cta_demo: "Nous contacter",
   },
   hero: {
     eyebrow: "Tarifs",
@@ -35,7 +35,7 @@ const CONFIG = {
       "Accompagnement au démarrage",
       "Imputable intégralement sur la première année d'abonnement",
     ],
-    cta: "Prendre rendez-vous",
+    cta: "Nous contacter",
   },
   plans: [
     { name: "Starter", fournisseurs: 100, price: "1 000", highlight: false, items: ["Jusqu'à 100 fournisseurs actifs", "Campagnes illimitées", "Questionnaire standard", "Synthèse partagée", "Export PDF & Excel", "Support email"] },
@@ -200,11 +200,11 @@ document.addEventListener('DOMContentLoaded', () => {
         <div><span class="plan-price">${pl.price} €</span><span class="plan-period">/mois</span></div>
         <div class="plan-divider"></div>
         <div class="plan-items">${pl.items.map(i => `<div class="plan-item">${i}</div>`).join('')}</div>
-        <button class="plan-cta" onclick="location.href='rdv.html'">Prendre rendez-vous</button>
+        <button class="plan-cta" onclick="location.href='rdv.html'">Nous contacter</button>
       </div>`).join('')}
     </div>
     <div class="mentions-grid">${C.mentions.map(m => `<div class="mention-card"><div class="mention-icon">${m.icon}</div><div><div class="mention-title">${m.title}</div><div class="mention-text">${m.text}</div></div></div>`).join('')}</div>`;
-  document.getElementById('cta').innerHTML = `<div class="cta-headline">Une question sur les tarifs ?</div><div class="cta-sub">On vous répond en moins de 24h.</div><div class="cta-actions"><a href="rdv.html" class="hero-btn-primary" style="text-decoration:none">Prendre rendez-vous</a></div>`;
+  document.getElementById('cta').innerHTML = `<div class="cta-headline">Une question sur les tarifs ?</div><div class="cta-sub">On vous répond en moins de 24h.</div><div class="cta-actions"><a href="rdv.html" class="hero-btn-primary" style="text-decoration:none">Nous contacter</a></div>`;
   const fo = C.footer;
   document.getElementById('footer').innerHTML = `<div class="footer-inner"><div class="footer-top"><div class="footer-brand"><div class="logo"><span class="logo-good">${C.nav.logo_good}</span><span class="logo-wease">${C.nav.logo_wease}</span></div><div class="footer-tagline">${fo.tagline}</div></div>${fo.cols.map(c => `<div><a class="footer-col-title" href="${c.href}">${c.title}</a><div class="footer-links">${c.links.map(l => typeof l === 'string' ? `<span class="footer-link">${l}</span>` : `<a class="footer-link" href="${l.href}">${l.label}</a>`).join('')}</div></div>`).join('')}</div><div class="footer-bottom">${fo.legal}</div></div>`;
 });
@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="modal-error" id="modal-error"></div>
     <input class="modal-input" id="modal-email" type="email" autocomplete="email" placeholder="votre@email.com" />
     <button class="modal-submit" id="modal-submit">Recevoir un lien de connexion</button>
-    <div class="modal-footer">Pas encore client ? <a href="rdv.html">Prendre rendez-vous</a></div>
+    <div class="modal-footer">Pas encore client ? <a href="rdv.html">Nous contacter</a></div>
   </div>
 </div>
 <script>
