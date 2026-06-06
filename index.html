@@ -873,13 +873,13 @@ document.addEventListener('DOMContentLoaded', () => {
     modalSubmit.disabled = true;
     modalSubmit.textContent = 'Envoi en cours...';
     try {
-      const res = await fetch(\`${C.app_url}/api/auth/magic-link\`, {
+      const res = await fetch(`${C.app_url}/api/auth/magic-link`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email })
       });
       if (res.ok) {
-        modalSuccess.innerHTML = \`<strong>${M.success_title}</strong>${M.success_text}\`;
+        modalSuccess.innerHTML = `<strong>${M.success_title}</strong>${M.success_text}`;
         modalSuccess.classList.add('show');
         modalSubmit.style.display = 'none';
         modalEmail.style.display = 'none';
