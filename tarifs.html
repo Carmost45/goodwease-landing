@@ -55,7 +55,12 @@ const CONFIG = {
       { title: "Fonctionnalités", href: "fonctionnalites.html", links: ["Évaluation 360° symétrique","Anonymat technique garanti","Restitution partagée","Plans d'amélioration co-construits","Hébergement France & RGPD"] },
       { title: "Pour qui ?", href: "pourqui.html", links: ["Direction Qualité","Direction des Achats","Direction des Systèmes d'Information","Direction Générale","Direction Commerciale & Partenariats"] },
       { title: "Ressources", href: "ressources.html", links: ["Méthode & évaluation 360°","Technique & sécurité","RGPD & hébergement","Tarifs & contrats","Déploiement"] },
-      { title: "Goodwease", href: "index.html", links: ["À propos","Contact","Mentions légales","Politique de confidentialité"] },
+      { title: "Goodwease", href: "index.html", links: [
+        { label: "À propos",                     href: "apropos.html" },
+        { label: "Contact",                      href: "contact.html" },
+        { label: "Mentions légales",             href: "mentions-legales.html" },
+        { label: "Politique de confidentialité", href: "confidentialite.html" },
+      ]},
     ],
     legal: "© 2026 Goodwease — Tous droits réservés — Hébergé en France 🇫🇷",
   },
@@ -137,7 +142,7 @@ footer{background:#0f1c2e;padding:4rem 2.5rem 2rem;border-top:1px solid rgba(255
 .footer-top{display:grid;grid-template-columns:1.5fr repeat(4,1fr);gap:3rem;margin-bottom:3rem}
 .footer-brand .logo{margin-bottom:0.75rem}
 .footer-tagline{color:rgba(255,255,255,0.45);font-size:0.85rem;line-height:1.6;max-width:200px}
-.footer-col-title{display:block;color:rgba(255,255,255,0.85);font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:1rem;text-decoration:none;transition:color 0.15s}
+.footer-col-title{display:block;color:rgba(255,255,255,0.85);font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:1rem;text-decoration:none;transition:color 0.15s;cursor:pointer}
 .footer-col-title:hover{color:var(--sky)}
 .footer-links{display:flex;flex-direction:column;gap:0.5rem}
 .footer-link{color:rgba(255,255,255,0.4);font-size:0.85rem}
