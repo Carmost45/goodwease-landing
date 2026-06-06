@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fonctionnalités — Goodwease</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<script>
+const CONFIG = {
+  landing_url: "https://goodwease-landing.vercel.app",
+  app_url: "https://goodwease-dev.vercel.app",
+  nav: { logo_good:"good", logo_wease:"wease", links:["Fonctionnalités","Pour qui ?","Tarifs","Ressources"], cta_login:"Connexion", cta_demo:"Demander une démo" },
+  hero: {
+    eyebrow: "Fonctionnalités",
+    headline: "Ce que Goodwease résout — concrètement",
+    subtext: "Chaque fonctionnalité répond à un problème réel vécu dans les relations client/fournisseur.",
+  },
+  pairs: [
+    { problem_icon:"😶", problem_title:"Vous ne savez pas ce que pense vraiment votre fournisseur", problem_text:"Les réunions de suivi restent en surface. Les vrais problèmes ne remontent jamais.", solution_icon:"⚖️", solution_title:"Évaluation 360° symétrique", solution_text:"Les deux parties s'évaluent mutuellement sur les mêmes critères. Ce que pense réellement chaque côté devient visible — sans filtre." },
+    { problem_icon:"🤐", problem_title:"Vos équipes terrain n'osent pas s'exprimer", problem_text:"La hiérarchie, la peur des représailles ou simplement la gêne empêchent le feedback authentique.", solution_icon:"🔒", solution_title:"Anonymat garanti techniquement", solution_text:"Impossible de relier une réponse à son auteur. La dissociation est technique, pas organisationnelle. Les équipes parlent librement." },
+    { problem_icon:"📉", problem_title:"Vous n'avez aucune donnée sur l'évolution de la relation", problem_text:"Une impression générale, quelques emails, des réunions — mais aucune mesure objective dans le temps.", solution_icon:"📊", solution_title:"Scores et radar chart par campagne", solution_text:"Chaque dimension est notée et comparée dans le temps. La progression du cercle vertueux est visible et mesurable." },
+    { problem_icon:"🔀", problem_title:"Chaque partie a sa propre version de la réalité", problem_text:"Votre compte-rendu de réunion et celui du fournisseur ne disent jamais la même chose.", solution_icon:"📋", solution_title:"Restitution partagée identique", solution_text:"Les deux parties voient exactement la même synthèse. Une seule version de la réalité — la base de toute amélioration." },
+    { problem_icon:"📝", problem_title:"Les plans d'action restent dans les tiroirs", problem_text:"Après chaque bilan, des bonnes intentions. Mais qui fait quoi, avant quand ? Personne ne sait.", solution_icon:"🎯", solution_title:"Plans d'amélioration co-construits et suivis", solution_text:"Chaque action a un responsable, une échéance, un statut. La campagne suivante mesure les progrès réalisés." },
+    { problem_icon:"⚖️", problem_title:"Vos données sensibles partent à l'étranger", problem_text:"Les évaluations de performance relationnelle sont des données sensibles. Les héberger hors UE expose votre entreprise.", solution_icon:"🇫🇷", solution_title:"100% hébergé en France, conforme RGPD", solution_text:"Données exclusivement sur territoire français. Architecture RGPD native. Réponses aux droits d'accès et d'effacement intégrées." },
+  ],
+  cta: {
+    headline: "Vous reconnaissez ces problèmes ?",
+    subtext: "Goodwease les résout dès la première campagne.",
+    cta_primary: "Demander une démo",
+    cta_secondary: "Voir comment ça marche",
+  },
+};
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#1E3A5F;--sky:#4A90D9;--sky-10:#eaf3fb;--surface:#F7F8FC;--white:#FFFFFF;--border:#CBD5E1;--border-light:#E2E8F0;--text-1:#0F1C2E;--text-2:#4A5568;--text-3:#8896A5;--amber:#BA7517;--amber-bg:#FDF3DC;--green:#639922;--green-bg:#EDF5DC;--radius:8px;--radius-lg:14px;font-size:16px}
+body{font-family:'DM Sans',sans-serif;color:var(--text-1);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Sora',sans-serif;line-height:1.2}
+a{color:inherit;text-decoration:none}
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-light);padding:0 2.5rem}
+.nav-inner{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:2rem;height:62px}
+.logo{display:flex;align-items:center;font-family:'Sora',sans-serif;font-weight:700;font-size:1.35rem;margin-right:1rem}
+.logo-good{color:var(--navy)}.logo-wease{color:var(--sky)}
+.nav-links{display:flex;gap:0.25rem;flex:1}
+.nav-link{padding:0.4rem 0.85rem;border-radius:6px;font-size:0.88rem;font-weight:500;color:var(--text-2);cursor:pointer;transition:background 0.15s}
+.nav-link:hover,.nav-link.active{background:var(--sky-10);color:var(--navy)}
+.nav-actions{display:flex;align-items:center;gap:0.75rem}
+.btn-ghost{padding:0.4rem 1rem;border-radius:var(--radius);font-size:0.875rem;font-weight:500;color:var(--navy);background:none;border:none;cursor:pointer}
+.btn-primary{padding:0.5rem 1.25rem;border-radius:var(--radius);font-size:0.875rem;font-weight:600;background:var(--sky);color:#fff;border:none;cursor:pointer}
+.hero{background:linear-gradient(160deg,#0f1c2e 0%,#1E3A5F 55%,#1a3557 100%);padding:5rem 2.5rem 4rem;text-align:center}
+.eyebrow{font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--sky);margin-bottom:0.75rem}
+.hero h1{font-size:clamp(2rem,3.5vw,2.8rem);color:#fff;font-weight:700;margin-bottom:1rem;letter-spacing:-0.03em}
+.hero-sub{color:rgba(255,255,255,0.7);font-size:1.05rem;max-width:560px;margin:0 auto;line-height:1.7}
+.pairs-section{padding:5rem 2.5rem;background:var(--white)}
+.section-inner{max-width:1180px;margin:0 auto}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem}
+.pair-problem{background:#f0f4f9;border:1px solid #c8d8ec;border-radius:var(--radius-lg);padding:1.75rem;border-left:4px solid var(--navy)}
+.pair-solution{background:#eaf3fb;border:1px solid #9dc4e8;border-radius:var(--radius-lg);padding:1.75rem;border-left:4px solid var(--sky)}
+.pair-tag{font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.75rem}
+.pair-problem .pair-tag{color:var(--navy)}
+.pair-solution .pair-tag{color:var(--sky)}
+.pair-icon{font-size:1.5rem;margin-bottom:0.5rem}
+.pair-title{font-family:'Sora',sans-serif;font-size:0.95rem;font-weight:700;color:var(--navy);margin-bottom:0.4rem}
+.pair-text{font-size:0.85rem;color:var(--text-2);line-height:1.65}
+.arrow-row{display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;color:var(--sky);font-size:1.5rem}
+.cta-section{background:linear-gradient(135deg,#0f1c2e 0%,#1E3A5F 100%);text-align:center;padding:6rem 2.5rem}
+.cta-headline{font-family:'Sora',sans-serif;font-size:clamp(1.7rem,3vw,2.3rem);font-weight:700;color:#fff;margin-bottom:1rem;letter-spacing:-0.02em}
+.cta-sub{color:rgba(255,255,255,0.6);font-size:1rem;margin-bottom:2.5rem}
+.cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.hero-btn-primary{padding:0.75rem 1.75rem;border-radius:var(--radius);font-size:0.95rem;font-weight:600;background:var(--sky);color:#fff;border:none;cursor:pointer;font-family:'DM Sans',sans-serif}
+.hero-btn-secondary{padding:0.75rem 1.75rem;border-radius:var(--radius);font-size:0.95rem;font-weight:600;background:none;color:#fff;border:1.5px solid rgba(255,255,255,0.35);cursor:pointer;font-family:'DM Sans',sans-serif}
+footer{background:#0f1c2e;padding:2rem 2.5rem;border-top:1px solid rgba(255,255,255,0.06);text-align:center;color:rgba(255,255,255,0.3);font-size:0.78rem}
+@media(max-width:700px){.pair{grid-template-columns:1fr}.nav-links{display:none}}
+</style>
+</head>
+<body>
+<nav class="nav" id="nav"></nav>
+<section class="hero"><div style="max-width:760px;margin:0 auto" id="hero"></div></section>
+<section class="pairs-section"><div class="section-inner" id="pairs"></div></section>
+<section class="cta-section" id="cta"></section>
+<footer id="footer"></footer>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  const C=CONFIG;
+  document.getElementById('nav').innerHTML=`<div class="nav-inner"><a href="${C.landing_url}" class="logo"><span class="logo-good">${C.nav.logo_good}</span><span class="logo-wease">${C.nav.logo_wease}</span></a><nav class="nav-links">${C.nav.links.map((l,i)=>`<a class="nav-link${i===0?' active':''}">${l}</a>`).join('')}</nav><div class="nav-actions"><button class="btn-ghost">${C.nav.cta_login}</button><button class="btn-primary">${C.nav.cta_demo}</button></div></div>`;
+  document.getElementById('hero').innerHTML=`<div class="eyebrow">${C.hero.eyebrow}</div><h1>${C.hero.headline}</h1><p class="hero-sub" style="margin-top:1rem">${C.hero.subtext}</p>`;
+  document.getElementById('pairs').innerHTML=C.pairs.map(p=>`
+    <div class="pair">
+      <div class="pair-problem">
+        <div class="pair-tag">◆ Le problème</div>
+        <div class="pair-icon">${p.problem_icon}</div>
+        <div class="pair-title">${p.problem_title}</div>
+        <div class="pair-text">${p.problem_text}</div>
+      </div>
+      <div class="pair-solution">
+        <div class="pair-tag">✓ La solution Goodwease</div>
+        <div class="pair-icon">${p.solution_icon}</div>
+        <div class="pair-title">${p.solution_title}</div>
+        <div class="pair-text">${p.solution_text}</div>
+      </div>
+    </div>`).join('');
+  document.getElementById('cta').innerHTML=`<div class="cta-headline">${C.cta.headline}</div><div class="cta-sub">${C.cta.subtext}</div><div class="cta-actions"><button class="hero-btn-primary">${C.cta.cta_primary}</button><button class="hero-btn-secondary">${C.cta.cta_secondary}</button></div>`;
+  document.getElementById('footer').textContent=`© 2026 Goodwease — Tous droits réservés — Hébergé en France 🇫🇷`;
+});
+</script>
+</body>
+</html>
