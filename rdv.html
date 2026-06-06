@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prendre rendez-vous — Goodwease</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<script>
+const CONFIG = {
+  landing_url: "index.html",
+  nav: {
+    logo_good: "good", logo_wease: "wease",
+    links: [
+      { label: "Fonctionnalités", href: "fonctionnalites.html" },
+      { label: "Pour qui ?", href: "pourqui.html" },
+      { label: "Tarifs", href: "tarifs.html" },
+      { label: "Ressources", href: "ressources.html" },
+    ],
+    cta_demo: "Prendre rendez-vous",
+  },
+  hero: {
+    eyebrow: "Rendez-vous",
+    headline: "Prenons rendez-vous",
+    subtext: "30 minutes pour explorer Goodwease ensemble — démo, POC ou simple échange exploratoire. Décrivez votre contexte, nous nous adaptons.",
+  },
+  form: {
+    fields: [
+      { id: "prenom", label: "Prénom", type: "text", required: true, placeholder: "Stéphane" },
+      { id: "nom", label: "Nom", type: "text", required: true, placeholder: "Carmona" },
+      { id: "email", label: "Email professionnel", type: "email", required: true, placeholder: "s.carmona@entreprise.com" },
+      { id: "societe", label: "Société", type: "text", required: true, placeholder: "Goodwease" },
+      { id: "fonction", label: "Fonction", type: "text", required: true, placeholder: "Directeur Qualité" },
+      { id: "objet", label: "Objet de votre demande", type: "select", required: true,
+        options: [
+          "Découverte — je veux voir Goodwease en action",
+          "POC — tester sur un périmètre limité (7 500€ imputable an 1)",
+          "Échange exploratoire — j'ai des questions avant de décider",
+          "Autre",
+        ] },
+    ],
+    message: { id: "message", label: "Votre contexte et vos questions", placeholder: "Décrivez votre situation, vos enjeux, vos questions..." },
+    cta: "Envoyer ma demande de rendez-vous",
+    success_title: "Demande de rendez-vous reçue ✓",
+    success_text: "Nous vous contactons sous 24h pour planifier la démo.",
+    mention: "Vos données ne sont jamais revendues ni partagées.",
+  },
+  reassurance: [
+    { icon: "⏱️", title: "Réponse sous 24h", text: "Nous revenons vers vous rapidement pour planifier un créneau." },
+    { icon: "🎯", title: "Démo personnalisée", text: "Nous préparons la démonstration en fonction de votre contexte et de vos fournisseurs." },
+    { icon: "🇫🇷", title: "Données hébergées en France", text: "Goodwease est 100% hébergé en France, conforme RGPD dès le départ." },
+    { icon: "🔒", title: "Sans engagement", text: "La démo est gratuite et sans engagement. Un POC est disponible à 7 500€ imputable sur l'an 1." },
+  ],
+  footer: {
+    tagline: "La qualité relationnelle B2B mesurée, partagée, améliorée.",
+    cols: [
+      { title: "Fonctionnalités", href: "fonctionnalites.html", links: ["Évaluation 360° symétrique","Anonymat technique garanti","Restitution partagée","Plans d'amélioration co-construits","Hébergement France & RGPD"] },
+      { title: "Pour qui ?", href: "pourqui.html", links: ["Direction Qualité","Direction des Achats","Direction des Systèmes d'Information","Direction Générale","Direction Commerciale & Partenariats"] },
+      { title: "Ressources", href: "ressources.html", links: ["Méthode & évaluation 360°","Technique & sécurité","RGPD & hébergement","Tarifs & contrats","Déploiement"] },
+      { title: "Goodwease", href: "index.html", links: ["À propos","Contact","Mentions légales","Politique de confidentialité"] },
+    ],
+    legal: "© 2026 Goodwease — Tous droits réservés — Hébergé en France 🇫🇷",
+  },
+};
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#1E3A5F;--sky:#4A90D9;--sky-10:#eaf3fb;--surface:#F7F8FC;--white:#FFFFFF;--border:#CBD5E1;--border-light:#E2E8F0;--text-1:#0F1C2E;--text-2:#4A5568;--text-3:#8896A5;--green:#639922;--green-bg:#EDF5DC;--radius:8px;--radius-lg:14px;font-size:16px}
+body{font-family:'DM Sans',sans-serif;color:var(--text-1);background:var(--surface);line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Sora',sans-serif;line-height:1.2}
+a{color:inherit;text-decoration:none}
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-light);padding:0 2.5rem}
+.nav-inner{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:2rem;height:62px}
+.logo{display:flex;align-items:center;font-family:'Sora',sans-serif;font-weight:700;font-size:1.35rem;margin-right:1rem}
+.logo-good{color:var(--navy)}.logo-wease{color:var(--sky)}
+.nav-links{display:flex;gap:0.25rem;flex:1}
+.nav-link{padding:0.4rem 0.85rem;border-radius:6px;font-size:0.88rem;font-weight:500;color:var(--text-2);cursor:pointer;transition:background 0.15s}
+.nav-link:hover{background:var(--sky-10);color:var(--navy)}
+.nav-actions{display:flex;align-items:center;gap:0.75rem}
+.btn-ghost{padding:0.4rem 1rem;border-radius:var(--radius);font-size:0.875rem;font-weight:500;color:var(--navy);background:none;border:none;cursor:pointer}
+.btn-primary{padding:0.5rem 1.25rem;border-radius:var(--radius);font-size:0.875rem;font-weight:600;background:var(--sky);color:#fff;border:none;cursor:pointer}
+.hero{background:linear-gradient(160deg,#0f1c2e 0%,#1E3A5F 55%,#1a3557 100%);padding:4rem 2.5rem 3rem;text-align:center}
+.eyebrow{font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--sky);margin-bottom:0.75rem}
+.hero h1{font-size:clamp(1.8rem,3vw,2.5rem);color:#fff;font-weight:700;margin-bottom:1rem;letter-spacing:-0.03em}
+.hero-sub{color:rgba(255,255,255,0.7);font-size:1rem;max-width:520px;margin:0 auto;line-height:1.7}
+.main-section{padding:4rem 2.5rem;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:3rem;align-items:start}
+.form-box{background:var(--white);border:1px solid var(--border-light);border-radius:20px;padding:2.5rem}
+.form-title{font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:1.75rem}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.form-group{display:flex;flex-direction:column;gap:0.4rem}
+.form-group.full{grid-column:1/-1}
+label{font-size:0.82rem;font-weight:600;color:var(--navy)}
+.form-input,.form-select,.form-textarea{padding:0.7rem 1rem;border:1.5px solid var(--border);border-radius:var(--radius);font-size:0.875rem;font-family:'DM Sans',sans-serif;color:var(--text-1);outline:none;transition:border-color 0.15s;width:100%}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--sky)}
+.form-textarea{resize:vertical;min-height:120px}
+.form-submit{width:100%;padding:0.85rem;border-radius:var(--radius);background:var(--sky);color:#fff;border:none;cursor:pointer;font-size:0.95rem;font-weight:600;font-family:'DM Sans',sans-serif;margin-top:1rem;transition:background 0.15s}
+.form-submit:hover{background:#3a7bbf}
+.form-mention{text-align:center;font-size:0.75rem;color:var(--text-3);margin-top:0.75rem}
+.form-success{display:none;background:var(--green-bg);border:1px solid #c8e895;border-radius:var(--radius-lg);padding:1.5rem;text-align:center}
+.form-success.show{display:block}
+.form-success-title{font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:0.5rem}
+.form-success-text{font-size:0.9rem;color:var(--text-2)}
+.reassurance{display:flex;flex-direction:column;gap:1.25rem}
+.reass-card{background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:1.25rem;display:flex;gap:1rem;align-items:flex-start}
+.reass-icon{font-size:1.4rem;flex-shrink:0}
+.reass-title{font-family:'Sora',sans-serif;font-size:0.9rem;font-weight:700;color:var(--navy);margin-bottom:0.25rem}
+.reass-text{font-size:0.85rem;color:var(--text-2);line-height:1.6}
+footer{background:#0f1c2e;padding:4rem 2.5rem 2rem;border-top:1px solid rgba(255,255,255,0.06)}
+.footer-inner{max-width:1180px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:1.5fr repeat(4,1fr);gap:3rem;margin-bottom:3rem}
+.footer-brand .logo{margin-bottom:0.75rem}
+.footer-tagline{color:rgba(255,255,255,0.45);font-size:0.85rem;line-height:1.6;max-width:200px}
+.footer-col-title{display:block;color:rgba(255,255,255,0.85);font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:1rem;transition:color 0.15s}
+.footer-col-title:hover{color:var(--sky)}
+.footer-links{display:flex;flex-direction:column;gap:0.5rem}
+.footer-link{color:rgba(255,255,255,0.4);font-size:0.85rem}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.06);padding-top:1.5rem;color:rgba(255,255,255,0.25);font-size:0.78rem}
+@media(max-width:800px){.main-section{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.nav-links{display:none}.footer-top{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<nav class="nav" id="nav"></nav>
+<section class="hero"><div style="max-width:760px;margin:0 auto" id="hero"></div></section>
+<div class="main-section">
+  <div class="form-box" id="form-box"></div>
+  <div class="reassurance" id="reassurance"></div>
+</div>
+<footer id="footer"></footer>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const C = CONFIG;
+  document.getElementById('nav').innerHTML = `<div class="nav-inner"><a href="${C.landing_url}" class="logo"><span class="logo-good">${C.nav.logo_good}</span><span class="logo-wease">${C.nav.logo_wease}</span></a><nav class="nav-links">${C.nav.links.map(l => `<a class="nav-link" href="${l.href}">${l.label}</a>`).join('')}</nav><div class="nav-actions"><button class="btn-primary">${C.nav.cta_demo}</button></div></div>`;
+  document.getElementById('hero').innerHTML = `<div class="eyebrow">${C.hero.eyebrow}</div><h1>${C.hero.headline}</h1><p class="hero-sub" style="margin-top:1rem">${C.hero.subtext}</p>`;
+  const f = C.form;
+  const regularFields = f.fields.map(field => {
+    if (field.type === 'select') {
+      return `<div class="form-group"><label for="${field.id}">${field.label}</label><select class="form-select" id="${field.id}"><option value="">Sélectionner...</option>${field.options.map(o => `<option>${o}</option>`).join('')}</select></div>`;
+    }
+    return `<div class="form-group"><label for="${field.id}">${field.label}${field.required ? ' *' : ''}</label><input class="form-input" type="${field.type}" id="${field.id}" placeholder="${field.placeholder}" ${field.required ? 'required' : ''}></div>`;
+  }).join('');
+  document.getElementById('form-box').innerHTML = `
+    <div class="form-title">Parlez-nous de votre situation</div>
+    <div class="form-success" id="form-success"><div class="form-success-title">${f.success_title}</div><div class="form-success-text">${f.success_text}</div></div>
+    <div id="form-content">
+      <div class="form-grid">${regularFields}</div>
+      <div class="form-group full" style="margin-bottom:0"><label for="message">${f.message.label}</label><textarea class="form-textarea" id="message" placeholder="${f.message.placeholder}"></textarea></div>
+      <button class="form-submit" id="form-submit">${f.cta}</button>
+      <div class="form-mention">${f.mention}</div>
+    </div>`;
+  document.getElementById('reassurance').innerHTML = C.reassurance.map(r => `<div class="reass-card"><div class="reass-icon">${r.icon}</div><div><div class="reass-title">${r.title}</div><div class="reass-text">${r.text}</div></div></div>`).join('');
+  document.getElementById('form-submit').addEventListener('click', () => {
+    document.getElementById('form-content').style.display = 'none';
+    document.getElementById('form-success').classList.add('show');
+  });
+  const fo = C.footer;
+  document.getElementById('footer').innerHTML = `<div class="footer-inner"><div class="footer-top"><div class="footer-brand"><div class="logo"><span class="logo-good">${C.nav.logo_good}</span><span class="logo-wease">${C.nav.logo_wease}</span></div><div class="footer-tagline">${fo.tagline}</div></div>${fo.cols.map(c => `<div><a class="footer-col-title" href="${c.href}">${c.title}</a><div class="footer-links">${c.links.map(l => `<span class="footer-link">${l}</span>`).join('')}</div></div>`).join('')}</div><div class="footer-bottom">${fo.legal}</div></div>`;
+});
+</script>
+</body>
+</html>

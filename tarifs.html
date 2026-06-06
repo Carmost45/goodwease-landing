@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tarifs — Goodwease</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<script>
+const CONFIG = {
+  landing_url: "index.html",
+  nav: {
+    logo_good: "good", logo_wease: "wease",
+    links: [
+      { label: "Fonctionnalités", href: "fonctionnalites.html" },
+      { label: "Pour qui ?", href: "pourqui.html" },
+      { label: "Tarifs", href: "tarifs.html" },
+      { label: "Ressources", href: "ressources.html" },
+    ],
+    cta_demo: "Prendre rendez-vous",
+  },
+  hero: {
+    eyebrow: "Tarifs",
+    headline: "Un modèle simple, transparent, sans surprise",
+    subtext: "Vous payez par fournisseur actif. Les relations internes sont débloquées gratuitement. Pas de self-service au MVP — nous configurons tout avec vous.",
+  },
+  poc: {
+    title: "POC — Point d'entrée",
+    price: "7 500 €",
+    mention: "one-shot · imputable sur l'an 1",
+    description: "Démarrez avec un périmètre limité pour valider la valeur avant de déployer à grande échelle.",
+    items: [
+      "5 fournisseurs maximum",
+      "Durée : 3 mois",
+      "Questionnaire standard inclus",
+      "Accompagnement au démarrage",
+      "Imputable intégralement sur la première année d'abonnement",
+    ],
+    cta: "Prendre rendez-vous",
+  },
+  plans: [
+    { name: "Starter", fournisseurs: 100, price: "1 000", highlight: false, items: ["Jusqu'à 100 fournisseurs actifs", "Campagnes illimitées", "Questionnaire standard", "Synthèse partagée", "Export PDF & Excel", "Support email"] },
+    { name: "Business", fournisseurs: 250, price: "2 250", highlight: true, badge: "Le plus populaire", items: ["Jusqu'à 250 fournisseurs actifs", "Campagnes illimitées", "Questions custom par relation", "Synthèse partagée", "Export PDF & Excel", "Notifications & relances auto", "Support prioritaire"] },
+    { name: "Scale", fournisseurs: 500, price: "4 000", highlight: false, items: ["Jusqu'à 500 fournisseurs actifs", "Campagnes illimitées", "Questions custom par relation", "Synthèse partagée", "Export PDF & Excel", "Notifications & relances auto", "Benchmark inter-relations", "Support dédié"] },
+    { name: "Enterprise", fournisseurs: 1000, price: "7 000", highlight: false, items: ["Jusqu'à 1 000 fournisseurs actifs", "Campagnes illimitées", "Questions custom par relation", "Synthèse partagée", "Export PDF & Excel", "Notifications & relances auto", "Benchmark inter-relations", "SSO SAML 2.0 (R1+)", "SLA garanti", "Account manager dédié"] },
+  ],
+  mentions: [
+    { icon: "🔗", title: "Cumul de packs possible", text: "Vous pouvez combiner plusieurs packs pour atteindre le quota souhaité avec une tarification dégressive." },
+    { icon: "🏢", title: "Relations internes gratuites", text: "Dès lors que vous évaluez vos fournisseurs, les évaluations internes sont débloquées. Elles ne consomment pas de quota." },
+    { icon: "🤝", title: "Module Fournisseur gratuit", text: "Vos fournisseurs accèdent gratuitement à leur synthèse consolidée. Aucun coût supplémentaire." },
+    { icon: "💼", title: "Vente directe uniquement", text: "Au MVP, pas de self-service. Nous activons votre abonnement après signature du contrat." },
+  ],
+  footer: {
+    tagline: "La qualité relationnelle B2B mesurée, partagée, améliorée.",
+    cols: [
+      { title: "Fonctionnalités", href: "fonctionnalites.html", links: ["Évaluation 360° symétrique","Anonymat technique garanti","Restitution partagée","Plans d'amélioration co-construits","Hébergement France & RGPD"] },
+      { title: "Pour qui ?", href: "pourqui.html", links: ["Direction Qualité","Direction des Achats","Direction des Systèmes d'Information","Direction Générale","Direction Commerciale & Partenariats"] },
+      { title: "Ressources", href: "ressources.html", links: ["Méthode & évaluation 360°","Technique & sécurité","RGPD & hébergement","Tarifs & contrats","Déploiement"] },
+      { title: "Goodwease", href: "index.html", links: ["À propos","Contact","Mentions légales","Politique de confidentialité"] },
+    ],
+    legal: "© 2026 Goodwease — Tous droits réservés — Hébergé en France 🇫🇷",
+  },
+};
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#1E3A5F;--sky:#4A90D9;--sky-10:#eaf3fb;--surface:#F7F8FC;--white:#FFFFFF;--border:#CBD5E1;--border-light:#E2E8F0;--text-1:#0F1C2E;--text-2:#4A5568;--text-3:#8896A5;--amber:#BA7517;--green:#639922;--radius:8px;--radius-lg:14px;font-size:16px}
+body{font-family:'DM Sans',sans-serif;color:var(--text-1);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Sora',sans-serif;line-height:1.2}
+a{color:inherit;text-decoration:none}
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-light);padding:0 2.5rem}
+.nav-inner{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:2rem;height:62px}
+.logo{display:flex;align-items:center;font-family:'Sora',sans-serif;font-weight:700;font-size:1.35rem;margin-right:1rem}
+.logo-good{color:var(--navy)}.logo-wease{color:var(--sky)}
+.nav-links{display:flex;gap:0.25rem;flex:1}
+.nav-link{padding:0.4rem 0.85rem;border-radius:6px;font-size:0.88rem;font-weight:500;color:var(--text-2);cursor:pointer;transition:background 0.15s}
+.nav-link:hover,.nav-link.active{background:var(--sky-10);color:var(--navy)}
+.nav-actions{display:flex;align-items:center;gap:0.75rem}
+.btn-ghost{padding:0.4rem 1rem;border-radius:var(--radius);font-size:0.875rem;font-weight:500;color:var(--navy);background:none;border:none;cursor:pointer}
+.btn-primary{padding:0.5rem 1.25rem;border-radius:var(--radius);font-size:0.875rem;font-weight:600;background:var(--sky);color:#fff;border:none;cursor:pointer}
+.hero{background:linear-gradient(160deg,#0f1c2e 0%,#1E3A5F 55%,#1a3557 100%);padding:5rem 2.5rem 4rem;text-align:center}
+.eyebrow{font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--sky);margin-bottom:0.75rem}
+.hero h1{font-size:clamp(2rem,3.5vw,2.8rem);color:#fff;font-weight:700;margin-bottom:1rem;letter-spacing:-0.03em}
+.hero-sub{color:rgba(255,255,255,0.7);font-size:1.05rem;max-width:600px;margin:0 auto;line-height:1.7}
+/* POC */
+.poc-section{padding:4rem 2.5rem;background:var(--surface)}
+.section-inner{max-width:1180px;margin:0 auto}
+.poc-box{background:var(--navy);border-radius:20px;padding:2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.poc-tag{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.5);margin-bottom:0.5rem}
+.poc-title{font-family:'Sora',sans-serif;font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:0.25rem}
+.poc-price{font-family:'Sora',sans-serif;font-size:2.5rem;font-weight:700;color:var(--sky);margin-bottom:0.25rem;font-variant-numeric:tabular-nums}
+.poc-mention{color:rgba(255,255,255,0.5);font-size:0.82rem;margin-bottom:1rem}
+.poc-desc{color:rgba(255,255,255,0.65);font-size:0.9rem;line-height:1.65}
+.poc-items{display:flex;flex-direction:column;gap:0.6rem;margin-bottom:1.5rem}
+.poc-item{display:flex;align-items:flex-start;gap:0.6rem;font-size:0.875rem;color:rgba(255,255,255,0.8)}
+.poc-item::before{content:'✓';color:var(--sky);font-weight:700;flex-shrink:0}
+.poc-cta{padding:0.75rem 1.5rem;border-radius:var(--radius);font-size:0.9rem;font-weight:600;background:var(--sky);color:#fff;border:none;cursor:pointer;font-family:'DM Sans',sans-serif}
+/* PLANS */
+.plans-section{padding:5rem 2.5rem;background:var(--white)}
+.plans-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-bottom:3rem}
+.plan-card{background:var(--surface);border:1px solid var(--border-light);border-radius:20px;padding:2rem;display:flex;flex-direction:column;gap:1rem;position:relative;transition:box-shadow 0.2s}
+.plan-card.highlight{background:var(--navy);border-color:var(--navy)}
+.plan-card:hover{box-shadow:0 8px 32px rgba(30,58,95,0.1)}
+.plan-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--sky);color:#fff;font-size:0.72rem;font-weight:700;padding:0.25rem 0.75rem;border-radius:999px;white-space:nowrap}
+.plan-name{font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:700}
+.plan-card.highlight .plan-name{color:#fff}
+.plan-fournisseurs{font-size:0.82rem;color:var(--text-3)}
+.plan-card.highlight .plan-fournisseurs{color:rgba(255,255,255,0.5)}
+.plan-price{font-family:'Sora',sans-serif;font-size:2rem;font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums}
+.plan-card.highlight .plan-price{color:#fff}
+.plan-period{font-size:0.8rem;color:var(--text-3);margin-left:0.25rem;font-weight:400}
+.plan-card.highlight .plan-period{color:rgba(255,255,255,0.5)}
+.plan-divider{height:1px;background:var(--border-light)}
+.plan-card.highlight .plan-divider{background:rgba(255,255,255,0.1)}
+.plan-items{display:flex;flex-direction:column;gap:0.5rem;flex:1}
+.plan-item{display:flex;align-items:flex-start;gap:0.5rem;font-size:0.82rem;color:var(--text-2)}
+.plan-card.highlight .plan-item{color:rgba(255,255,255,0.75)}
+.plan-item::before{content:'✓';color:var(--sky);font-weight:700;flex-shrink:0;font-size:0.8rem;margin-top:0.1rem}
+.plan-cta{padding:0.65rem 1rem;border-radius:var(--radius);font-size:0.85rem;font-weight:600;border:1.5px solid var(--border);color:var(--navy);background:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s;text-align:center}
+.plan-card.highlight .plan-cta{background:var(--sky);border-color:var(--sky);color:#fff}
+.plan-cta:hover{border-color:var(--sky);background:var(--sky-10)}
+.plan-card.highlight .plan-cta:hover{background:#3a7bbf}
+/* MENTIONS */
+.mentions-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem}
+.mention-card{background:var(--surface);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:1.5rem;display:flex;gap:1rem;align-items:flex-start}
+.mention-icon{font-size:1.4rem;flex-shrink:0}
+.mention-title{font-family:'Sora',sans-serif;font-size:0.9rem;font-weight:700;color:var(--navy);margin-bottom:0.3rem}
+.mention-text{font-size:0.85rem;color:var(--text-2);line-height:1.6}
+/* CTA */
+.cta-section{background:linear-gradient(135deg,#0f1c2e 0%,#1E3A5F 100%);text-align:center;padding:6rem 2.5rem}
+.cta-headline{font-family:'Sora',sans-serif;font-size:clamp(1.7rem,3vw,2.3rem);font-weight:700;color:#fff;margin-bottom:1rem;letter-spacing:-0.02em}
+.cta-sub{color:rgba(255,255,255,0.6);font-size:1rem;margin-bottom:2.5rem}
+.cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.hero-btn-primary{padding:0.75rem 1.75rem;border-radius:var(--radius);font-size:0.95rem;font-weight:600;background:var(--sky);color:#fff;border:none;cursor:pointer;font-family:'DM Sans',sans-serif}
+/* FOOTER */
+footer{background:#0f1c2e;padding:4rem 2.5rem 2rem;border-top:1px solid rgba(255,255,255,0.06)}
+.footer-inner{max-width:1180px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:1.5fr repeat(4,1fr);gap:3rem;margin-bottom:3rem}
+.footer-brand .logo{margin-bottom:0.75rem}
+.footer-tagline{color:rgba(255,255,255,0.45);font-size:0.85rem;line-height:1.6;max-width:200px}
+.footer-col-title{display:block;color:rgba(255,255,255,0.85);font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:1rem;text-decoration:none;transition:color 0.15s}
+.footer-col-title:hover{color:var(--sky)}
+.footer-links{display:flex;flex-direction:column;gap:0.5rem}
+.footer-link{color:rgba(255,255,255,0.4);font-size:0.85rem}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.06);padding-top:1.5rem;color:rgba(255,255,255,0.25);font-size:0.78rem}
+@media(max-width:1000px){.plans-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.plans-grid{grid-template-columns:1fr}.poc-box{grid-template-columns:1fr}.mentions-grid{grid-template-columns:1fr}.nav-links{display:none}.footer-top{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<nav class="nav" id="nav"></nav>
+<section class="hero"><div style="max-width:760px;margin:0 auto" id="hero"></div></section>
+<section class="poc-section"><div class="section-inner" id="poc"></div></section>
+<section class="plans-section"><div class="section-inner" id="plans"></div></section>
+<section class="cta-section" id="cta"></section>
+<footer id="footer"></footer>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const C = CONFIG;
+  document.getElementById('nav').innerHTML = `<div class="nav-inner"><a href="${C.landing_url}" class="logo"><span class="logo-good">${C.nav.logo_good}</span><span class="logo-wease">${C.nav.logo_wease}</span></a><nav class="nav-links">${C.nav.links.map(l => `<a class="nav-link${l.href==='tarifs.html'?' active':''}" href="${l.href}">${l.label}</a>`).join('')}</nav><div class="nav-actions"><a href="rdv.html" class="btn-primary" style="text-decoration:none;display:inline-flex;align-items:center">${C.nav.cta_demo}</a></div></div>`;
+  document.getElementById('hero').innerHTML = `<div class="eyebrow">${C.hero.eyebrow}</div><h1>${C.hero.headline}</h1><p class="hero-sub" style="margin-top:1rem">${C.hero.subtext}</p>`;
+  const p = C.poc;
+  document.getElementById('poc').innerHTML = `<div class="poc-box"><div><div class="poc-tag">Point d'entrée recommandé</div><div class="poc-title">${p.title}</div><div class="poc-price">${p.price}</div><div class="poc-mention">${p.mention}</div><div class="poc-desc">${p.description}</div></div><div><div class="poc-items">${p.items.map(i => `<div class="poc-item">${i}</div>`).join('')}</div><button class="poc-cta" onclick="location.href='rdv.html'">${p.cta}</button></div></div>`;
+  document.getElementById('plans').innerHTML = `
+    <div style="text-align:center;margin-bottom:3rem">
+      <div class="eyebrow" style="color:var(--sky)">Abonnements mensuels</div>
+      <h2 style="font-family:'Sora',sans-serif;font-size:clamp(1.5rem,2.5vw,2rem);font-weight:700;color:var(--navy);letter-spacing:-0.02em">Choisissez votre pack</h2>
+      <p style="color:var(--text-2);font-size:0.95rem;margin-top:0.5rem">Facturation par fournisseur actif · Packs cumulables</p>
+    </div>
+    <div class="plans-grid">
+      ${C.plans.map(pl => `
+      <div class="plan-card${pl.highlight ? ' highlight' : ''}">
+        ${pl.badge ? `<div class="plan-badge">${pl.badge}</div>` : ''}
+        <div><div class="plan-name">${pl.name}</div><div class="plan-fournisseurs">${pl.fournisseurs} fournisseurs max</div></div>
+        <div><span class="plan-price">${pl.price} €</span><span class="plan-period">/mois</span></div>
+        <div class="plan-divider"></div>
+        <div class="plan-items">${pl.items.map(i => `<div class="plan-item">${i}</div>`).join('')}</div>
+        <button class="plan-cta" onclick="location.href='rdv.html'">Prendre rendez-vous</button>
+      </div>`).join('')}
+    </div>
+    <div class="mentions-grid">${C.mentions.map(m => `<div class="mention-card"><div class="mention-icon">${m.icon}</div><div><div class="mention-title">${m.title}</div><div class="mention-text">${m.text}</div></div></div>`).join('')}</div>`;
+  document.getElementById('cta').innerHTML = `<div class="cta-headline">Une question sur les tarifs ?</div><div class="cta-sub">On vous répond en moins de 24h.</div><div class="cta-actions"><a href="rdv.html" class="hero-btn-primary" style="text-decoration:none">Prendre rendez-vous</a></div>`;
+  const fo = C.footer;
+  document.getElementById('footer').innerHTML = `<div class="footer-inner"><div class="footer-top"><div class="footer-brand"><div class="logo"><span class="logo-good">${C.nav.logo_good}</span><span class="logo-wease">${C.nav.logo_wease}</span></div><div class="footer-tagline">${fo.tagline}</div></div>${fo.cols.map(c => `<div><a class="footer-col-title" href="${c.href}">${c.title}</a><div class="footer-links">${c.links.map(l => `<span class="footer-link">${l}</span>`).join('')}</div></div>`).join('')}</div><div class="footer-bottom">${fo.legal}</div></div>`;
+});
+</script>
+</body>
+</html>
