@@ -183,30 +183,10 @@ const CONFIG = {
   footer: {
     tagline: "La qualité relationnelle B2B mesurée, partagée, améliorée.",
     cols: [
-      {
-        title: "Fonctionnalités",
-        links: ["Évaluations symétriques", "Restitution partagée", "Plans d'amélioration", "Notifications & relances", "Exports PDF / Excel"],
-      },
-      {
-        title: "Pour qui ?",
-        links: ["Directeurs Qualité", "Responsables Achats", "Direction Générale", "Fournisseurs & partenaires"],
-      },
-      {
-        title: "Ressources",
-        links: [
-          { label: "Prendre rendez-vous",   href: "rdv.html" },
-          "Guide RGPD & sécurité", "Documentation API", "Centre d'aide",
-        ],
-      },
-      {
-        title: "Goodwease",
-        links: [
-          { label: "À propos",                     href: "apropos.html" },
-          { label: "Contact",                      href: "contact.html" },
-          { label: "Mentions légales",             href: "mentions-legales.html" },
-          { label: "Politique de confidentialité", href: "confidentialite.html" },
-        ],
-      },
+      { title: "Fonctionnalités", href: "fonctionnalites.html", links: ["Évaluation 360° symétrique","Anonymat technique garanti","Restitution partagée","Plans d'amélioration co-construits","Hébergement France & RGPD"] },
+      { title: "Pour qui ?", href: "pourqui.html", links: ["Direction Qualité","Direction des Achats","Direction des Systèmes d'Information","Direction Générale","Direction Commerciale & Partenariats"] },
+      { title: "Ressources", href: "ressources.html", links: ["Méthode & évaluation 360°","Technique & sécurité","RGPD & hébergement","Tarifs & contrats","Déploiement"] },
+      { title: "Goodwease", href: "index.html", links: ["À propos","Contact","Mentions légales","Politique de confidentialité"] },
     ],
     legal: "© 2026 Goodwease — Tous droits réservés — Hébergé en France 🇫🇷",
   },
@@ -817,7 +797,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const fo = C.footer;
   const cols = fo.cols.map(c=>`
     <div>
-      <div class="footer-col-title">${c.title}</div>
+      <a class="footer-col-title" href="${c.href}">${c.title}</a>
       <div class="footer-links">${c.links.map(l => typeof l === 'string' ? `<span class="footer-link">${l}</span>` : `<a class="footer-link" href="${l.href}">${l.label}</a>`).join('')}</div>
     </div>`).join('');
   document.getElementById('footer').innerHTML = `
