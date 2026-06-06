@@ -169,13 +169,44 @@ document.addEventListener('DOMContentLoaded', () => {
     <div id="form-content">
       <div class="form-grid">${regularFields}</div>
       <div class="form-group full" style="margin-bottom:0"><label for="message">${f.message.label}</label><textarea class="form-textarea" id="message" placeholder="${f.message.placeholder}"></textarea></div>
+      <div id="form-error" style="display:none;color:#DC2626;font-size:0.85rem;margin-top:0.5rem;text-align:center"></div>
       <button class="form-submit" id="form-submit">${f.cta}</button>
       <div class="form-mention">${f.mention}</div>
     </div>`;
   document.getElementById('reassurance').innerHTML = C.reassurance.map(r => `<div class="reass-card"><div class="reass-icon">${r.icon}</div><div><div class="reass-title">${r.title}</div><div class="reass-text">${r.text}</div></div></div>`).join('');
-  document.getElementById('form-submit').addEventListener('click', () => {
-    document.getElementById('form-content').style.display = 'none';
-    document.getElementById('form-success').classList.add('show');
+  document.getElementById('form-submit').addEventListener('click', async () => {
+    const body = {
+      prenom: document.getElementById('prenom').value,
+      nom: document.getElementById('nom').value,
+      email: document.getElementById('email').value,
+      societe: document.getElementById('societe').value,
+      fonction: document.getElementById('fonction').value,
+      objet: document.getElementById('objet').value,
+      message: document.getElementById('message').value,
+    };
+    document.getElementById('form-submit').disabled = true;
+    document.getElementById('form-submit').textContent = 'Envoi en cours...';
+    try {
+      const res = await fetch('https://goodwease-dev.vercel.app/api/rdv', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      if (res.ok) {
+        document.getElementById('form-content').style.display = 'none';
+        document.getElementById('form-success').classList.add('show');
+      } else {
+        document.getElementById('form-error').textContent = 'Une erreur est survenue. Veuillez réessayer.';
+        document.getElementById('form-error').style.display = 'block';
+        document.getElementById('form-submit').disabled = false;
+        document.getElementById('form-submit').textContent = 'Envoyer ma demande de rendez-vous';
+      }
+    } catch {
+      document.getElementById('form-error').textContent = 'Une erreur est survenue. Veuillez réessayer.';
+      document.getElementById('form-error').style.display = 'block';
+      document.getElementById('form-submit').disabled = false;
+      document.getElementById('form-submit').textContent = 'Envoyer ma demande de rendez-vous';
+    }
   });
   const fo = C.footer;
   document.getElementById('footer').innerHTML = `<div class="footer-inner"><div class="footer-top"><div class="footer-brand"><div class="logo"><span class="logo-good">${C.nav.logo_good}</span><span class="logo-wease">${C.nav.logo_wease}</span></div><div class="footer-tagline">${fo.tagline}</div></div>${fo.cols.map(c => `<div><a class="footer-col-title" href="${c.href}">${c.title}</a><div class="footer-links">${c.links.map(l => typeof l === 'string' ? `<span class="footer-link">${l}</span>` : `<a class="footer-link" href="${l.href}">${l.label}</a>`).join('')}</div></div>`).join('')}</div><div class="footer-bottom">${fo.legal}</div></div>`;
