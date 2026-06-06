@@ -635,7 +635,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="logo"><span class="logo-good">${C.nav.logo_good}</span><span class="logo-wease">${C.nav.logo_wease}</span></div>
       <nav class="nav-links">${C.nav.links.map(l=>`<a class="nav-link" href="${l.href}">${l.label}</a>`).join('')}</nav>
       <div class="nav-actions">
-        
+        <button class="btn-ghost open-login-modal">Connexion</button>
         <a href="rdv.html" class="btn-primary" style="text-decoration:none;display:inline-flex;align-items:center">${C.nav.cta_demo}</a>
       </div>
     </div>`;
@@ -808,7 +808,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <p class="section-sub" style="margin:0 auto 2.5rem;color:rgba(255,255,255,.6)">${cs.subtext}</p>
       <div class="cta-actions">
         <a href="rdv.html" class="hero-btn-primary" style="text-decoration:none">${cs.cta_primary}</a>
-        <button class="hero-btn-secondary">${cs.cta_secondary}</button>
+        ${cs.cta_secondary_tarifs ? `<a href="tarifs.html" class="hero-btn-secondary" style="text-decoration:none">${cs.cta_secondary_tarifs}</a>` : ""}
       </div>
       <div class="cta-mention">${cs.mention}</div>
     </div>`;
