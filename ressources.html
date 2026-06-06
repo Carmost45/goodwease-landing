@@ -112,7 +112,19 @@ a{color:inherit;text-decoration:none}
 .cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
 .hero-btn-primary{padding:0.75rem 1.75rem;border-radius:var(--radius);font-size:0.95rem;font-weight:600;background:var(--sky);color:#fff;border:none;cursor:pointer;font-family:'DM Sans',sans-serif}
 .hero-btn-secondary{padding:0.75rem 1.75rem;border-radius:var(--radius);font-size:0.95rem;font-weight:600;background:none;color:#fff;border:1.5px solid rgba(255,255,255,0.35);cursor:pointer;font-family:'DM Sans',sans-serif}
-footer{background:#0f1c2e;padding:2rem 2.5rem;border-top:1px solid rgba(255,255,255,0.06);text-align:center;color:rgba(255,255,255,0.3);font-size:0.78rem}
+/* ===== FOOTER ===== */
+  footer { background: #0f1c2e; padding: 4rem 2.5rem 2rem; border-top: 1px solid rgba(255,255,255,0.06); }
+  .footer-inner { max-width: 1180px; margin: 0 auto; }
+  .footer-top { display: grid; grid-template-columns: 1.5fr repeat(4, 1fr); gap: 3rem; margin-bottom: 3rem; }
+  .footer-brand .logo { margin-bottom: 0.75rem; }
+  .footer-tagline { color: rgba(255,255,255,0.45); font-size: 0.85rem; line-height: 1.6; max-width: 200px; }
+  .footer-col-title { display: block; color: rgba(255,255,255,0.85); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; text-decoration: none; transition: color 0.15s; cursor: pointer; }
+  .footer-col-title:hover { color: var(--sky); }
+  .footer-links { display: flex; flex-direction: column; gap: 0.5rem; }
+  .footer-link { color: rgba(255,255,255,0.4); font-size: 0.85rem; }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.5rem; color: rgba(255,255,255,0.25); font-size: 0.78rem; }
+  @media(max-width:900px) { .footer-top { grid-template-columns: 1fr 1fr; } }
+  @media(max-width:600px) { .footer-top { grid-template-columns: 1fr; } }
 @media(max-width:600px){.nav-links{display:none}}
 </style>
 </head>
@@ -132,8 +144,24 @@ document.addEventListener('DOMContentLoaded',()=>{
       <div class="theme-header"><span class="theme-icon">${t.icon}</span><span class="theme-title">${t.title}</span></div>
       ${t.items.map(i=>`<div class="faq-item"><button class="faq-q">${i.q}<span class="faq-arrow">▾</span></button><div class="faq-a">${i.a}</div></div>`).join('')}
     </div>`).join('');
-  document.getElementById('cta').innerHTML=`<div class="cta-headline">${C.cta.headline}</div><div class="cta-sub">${C.cta.subtext}</div><div class="cta-actions"><a href="rdv.html" class="hero-btn-primary" style="text-decoration:none">${C.cta.cta_primary}</a><button class="hero-btn-secondary">${C.cta.cta_secondary}</button></div>`;
-  document.getElementById('footer').textContent=`© 2026 Goodwease — Tous droits réservés — Hébergé en France 🇫🇷`;
+  document.getElementById('cta').innerHTML=`<div class="cta-headline">${C.cta.headline}</div><div class="cta-sub">${C.cta.subtext}</div><div class="cta-actions"><a href="rdv.html" class="hero-btn-primary" style="text-decoration:none">${C.cta.cta_primary}</a>${C.cta.cta_secondary ? `<button class="hero-btn-secondary">${C.cta.cta_secondary}</button>` : ""}</div>`;
+/* FOOTER */
+  const fo = C.footer;
+  document.getElementById('footer').innerHTML = `
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo"><span class="logo-good">${C.nav.logo_good}</span><span class="logo-wease">${C.nav.logo_wease}</span></div>
+          <div class="footer-tagline">${fo.tagline}</div>
+        </div>
+        ${fo.cols.map(c => `
+        <div>
+          <a class="footer-col-title" href="${c.href}">${c.title}</a>
+          <div class="footer-links">${c.links.map(l => `<span class="footer-link">${l}</span>`).join('')}</div>
+        </div>`).join('')}
+      </div>
+      <div class="footer-bottom">${fo.legal}</div>
+    </div>`;
   document.querySelectorAll('.faq-q').forEach(btn=>{btn.addEventListener('click',()=>{const item=btn.closest('.faq-item');const isOpen=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(el=>el.classList.remove('open'));if(!isOpen)item.classList.add('open');});});
 });
 </script>

@@ -663,7 +663,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <p class="hero-sub">${h.subtext}</p>
         <div class="hero-actions">
           <a href="rdv.html" class="hero-btn-primary" style="text-decoration:none">${h.cta_primary}</a>
-          <button class="hero-btn-secondary">${h.cta_secondary}</button>
+          ${h.cta_secondary ? `<button class="hero-btn-secondary">${h.cta_secondary}</button>` : ""}
         </div>
         <div class="hero-badge">${h.badge}</div>
       </div>
