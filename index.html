@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -620,7 +620,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="logo"><span class="logo-good">${C.nav.logo_good}</span><span class="logo-wease">${C.nav.logo_wease}</span></div>
       <nav class="nav-links">${C.nav.links.map(l=>`<a class="nav-link" href="${l.href}">${l.label}</a>`).join('')}</nav>
       <div class="nav-actions">
-        <button class="btn-ghost open-login-modal">Connexion</button>
+        <a href="https://goodwease-dev.vercel.app/login" class="btn-ghost" style="text-decoration:none">Connexion</a>
         <a href="rdv.html" class="btn-primary" style="text-decoration:none;display:inline-flex;align-items:center">${C.nav.cta_demo}</a>
       </div>
     </div>`;
