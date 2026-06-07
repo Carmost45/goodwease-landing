@@ -172,7 +172,7 @@ a{color:inherit;text-decoration:none}
 <script>
 document.addEventListener('DOMContentLoaded',()=>{
   const C=CONFIG;
-  document.getElementById('nav').innerHTML=`<div class="nav-inner"><a href="${C.landing_url}" class="logo"><span class="logo-good">${C.nav.logo_good}</span><span class="logo-wease">${C.nav.logo_wease}</span></a><nav class="nav-links">${C.nav.links.map((l,i)=>`<a class="nav-link${i===3?' active':''}" href="${l.href}">${l.label}</a>`).join('')}</nav><div class="nav-actions"><a href="https://goodwease-dev.vercel.app/login" class="btn-ghost" style="text-decoration:none">${C.nav.cta_login}</a><a href="rdv.html" class="btn-primary" style="text-decoration:none;display:inline-flex;align-items:center">${C.nav.cta_demo}</a></div></div>`;
+  document.getElementById('nav').innerHTML=`<div class="nav-inner"><a href="${C.landing_url}" class="logo"><span class="logo-good">${C.nav.logo_good}</span><span class="logo-wease">${C.nav.logo_wease}</span></a><nav class="nav-links">${C.nav.links.map((l,i)=>`<a class="nav-link${i===3?' active':''}" href="${l.href}">${l.label}</a>`).join('')}</nav><div class="nav-actions"><button class="btn-ghost open-login-modal">Connexion</button><a href="rdv.html" class="btn-primary" style="text-decoration:none;display:inline-flex;align-items:center">${C.nav.cta_demo}</a></div></div>`;
   document.getElementById('hero').innerHTML=`<div class="eyebrow">${C.hero.eyebrow}</div><h1>${C.hero.headline}</h1><p class="hero-sub" style="margin-top:1rem">${C.hero.subtext}</p>`;
   document.getElementById('faq').innerHTML=C.themes.map(t=>`
     <div class="theme-block">
